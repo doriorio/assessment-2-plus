@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hobbies Page</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Hobbies Page</h1>
+    <% if (hobbies.length == 0) { %>
+      <h3>  <%= "No Hobbies Here!" %></h3>
+        <% } %>
+  <% if (hobbies.length) { %>
+  <% hobbies.forEach(function(h, idx) { %> 
+  <li>
+  <%= h.name  %> <a href="/<%= h._id %>">Details</a>
+  <form action="<%= h._id %>?_method=DELETE"
+    method="POST" name="hobby<%= h.idx %>">
+
+    <button type="submit" class="delete">X</button>
+  </form>
+  <%     }); %>
+  <% } %>
+
+    <hr>
+    <h1>Add New Hobby!</h1>
+    <form id="add-hobby" action="/hobbies" method="POST">
+
+      <input name="name" placeholder="hobby name"><br>
+
+        <textarea name="description" placeholder="hobby description"></textarea>
+        <br>
+      <button type="submit">Submit</button>
+  </form>
+  </body>
+</html>
